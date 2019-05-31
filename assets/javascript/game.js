@@ -1,48 +1,61 @@
-alert("javscript is connected");
 // variables and counters
 var wins = 0;
 var losses = 0;
-var guessesleft = 9;
+var guessesLeft = 9;
+var guessedLetters = [];
 
 //array of potentail choices
-var computerChoices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 //variables to hold the reference
 var winstext = document.getElementById("wins");
-var lossestext = document.getElementById("losses")
-var directionstext = document.getElementById("directions")
-var guesseslefttext = document.getElementById("guessesLeft")
-var userGuesstext = document.getElementById("userGuess")
-var computerGuesstext = document.getElementById("computerGuess")
+var lossestext = document.getElementById("losses");
+var directionstext = document.getElementById("directions");
+var guessesLefttext = document.getElementById("guessesLeft");
+var guessedLetterstext = document.getElementById("guessedLetters");
+var computerGuesstext = document.getElementById("computerGuess");
+
+function reset() {
+    guessesLeft = 9;
+    guessedLetters = [];
+}
 
 //function is run everytime when key is pressed
-document.onkeyup = function (event){
-    console.log(event);
+document.onkeyup = function (event) {
+
     //determines what key is pressed by the user
-    var userGuess = event.key;
-    console.log(event.key);
-    //determines what choices the computer has to choose from
-    var computerguess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    var userGuess = event.key.toLowerCase();
 
-    if(userguess === computerguess){
-        win++;
-    }else{
-        guessesleft--;
+    if ((userGuess === "a") || (userGuess === "b") || (userGuess === "c") || (userGuess === "d") || (userGuess === "e") || (userGuess === "f") || (userGuess === "g") || (userGuess === "s") || (userGuess === "p") || (userGuess === "r") || (userGuess === "h") || (userGuess === "i") || (userGuess === "j") || (userGuess === "k") || (userGuess === "l") || (userGuess === "m") || (userGuess === "n") || (userGuess === "o") || (userGuess === "p") || (userGuess === "q") || (userGuess === "r") || (userGuess === "s") || (userGuess === "t") || (userGuess === "u") || (userGuess === "v") || (userGuess === "w") || (userGuess === "x") || (userGuess === "y") || (userGuess === "z")) {
+
+        //determines what choices the computer has to choose from
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        // wins 
+        if (userGuess === computerGuess) {
+            wins++;
+            computerGuesstext.textContent = computerGuess;
+        } else {
+            guessesLeft--;
+            guessedLetters.push(userGuess);
+        }
+
+        if (guessesLeft == 0) {
+            losses++;
+            computerGuesstext.textContent = computerGuess;
+            reset();
+        }
+
+        //hide the directions
+        directionstext.textContent = "";
+
+        //changes the counter of scores
+        guessedLetterstext.textContent = userGuess;
+        winstext.textContent = wins;
+        lossestext.textContent = losses;
+        guessesLefttext.textContent = guessesLeft;
     }
-
-    if(guessesleft = 0){
-        losses++;
-    }else{
-        wins++;
+    else {
+        alert("Please click okay to clear this message");
     }
-
-    //hide the directions
-    directionstext.textContent = " ";
-
-    //changes the counter of scores
-    winstext.textContent = wins;
-    lossestext.textContent = losses;
-    guesseslefttext.textContent = guessesleft;
-    userGuesstext.textContent = userGuessed;
-    computerlGuesstext.textContent = computerGuess;
 }
