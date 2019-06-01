@@ -25,28 +25,23 @@ function reset() {
     console.log(computerGuess)
 }
 
-function returnarray() {
-    for (i = 0; i < guessedLetters; i++) {
-        result = "";
-
-        var newletter = guessedLetters[i];
-        if(i !== guessedLetters.length - 1){
-            String.concat(newletter, " , ")
-        }
-    }
-}
-
+// function myFunction() {
+//     var guessedLetters = [];
+//     var guessedLetterstext = document.getElementById("guessedLetters");
+//     guessedLetterstext.textContent = guessedLetters.join(" , ");
+// }
 //function is run everytime when key is pressed
 document.onkeyup = function (event) {
-
     //determines what key is pressed by the user
     var userGuess = event.key.toLowerCase();
-
+    
     if (userGuess === computerGuess) {
         wins++;
         reset();
     } else {
         guessesLeft--;
+        guessedLetters.push(userGuess);
+        guessedLetterstext.textContent = guessedLetters.join(" , ");
     }
 
     if (guessesLeft == 0) {
@@ -58,7 +53,6 @@ document.onkeyup = function (event) {
     directionstext.textContent = "";
 
     //changes the counter of scores
-    guessedLetterstext.textContent = returnarray();
     winstext.textContent = wins;
     lossestext.textContent = losses;
     guessesLefttext.textContent = guessesLeft;
