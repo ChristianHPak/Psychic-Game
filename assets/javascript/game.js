@@ -25,11 +25,6 @@ function reset() {
     console.log(computerGuess)
 }
 
-// function myFunction() {
-//     var guessedLetters = [];
-//     var guessedLetterstext = document.getElementById("guessedLetters");
-//     guessedLetterstext.textContent = guessedLetters.join(" , ");
-// }
 //function is run everytime when key is pressed
 document.onkeyup = function (event) {
     //determines what key is pressed by the user
