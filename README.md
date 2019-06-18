@@ -1,5 +1,8 @@
 # Psychic Game
 
+Link to play game 
+https://christianhpak.github.io/Psychic-Game/
+
 ## Instructions
 The Psychic Game A simple JavaScript game that allows you to guess the letter the computer chooses.
 
